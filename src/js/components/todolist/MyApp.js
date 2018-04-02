@@ -1,34 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TodoListTable from './TodoListTable';
-import * as actions from '../../actions/todoActions';
-import {connect,  bindActionCreators } from 'react-redux';
 
-class MyApp extends React.Component {
-  constructor(props){
-        super(props);
+export default class MyApp extends React.Component{
+    constructor(){
+        super();
         this.state = {
             todoList : [{name: 'Planing', status:'done'}, {name: 'Designing', status:'done'}, {name: 'Implementing', status:'done'}]
         }
-  }
+    }
 
-  // componentDidMount() {
-  // }
+    render(){
+        var todoList = this.state.todoList;
+        return(
+           <div>fuck</div>
+        )
+    }
+} 
 
-  render() {
-    var todoList = this.state.todoList;
-    return 
-    (
-        <TodoListTable todoList={todoList} actions={actions}/>
-    );
-  }
-}
+// function mapStateToProps(state) {
+//   return {
+//       state
+//   };
+// }
 
+// const mapDispatchToProps = (dispatch) => { return { onDeleteButtonClick: (id) => { dispatch(deleteTodo(id)) } } }
 
-
-function mapDispatchToProps(dispatch){
-  return {
-      actions: bindActionCreators(actions, dispatch)
-  }
-}
-
-export default connect(null, mapDispatchToProps)(MyApp);
+// export default connect(mapStateToProps, mapDispatchToProps)(MyApp);

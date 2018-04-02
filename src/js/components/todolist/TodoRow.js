@@ -1,5 +1,6 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
+import {connect,  bindActionCreators } from 'react-redux';
+import * as actions from '../../actions/todoActions';
 
 export default class TodoRow extends React.Component{
     constructor(){
@@ -7,7 +8,8 @@ export default class TodoRow extends React.Component{
     }
 
     handleClick(){
-        this.props.actions.editTodo(this.props.todo);
+        alert(1);
+        this.props.onDeleteButtonClick(1);
     };
 
     render(){
@@ -23,3 +25,8 @@ export default class TodoRow extends React.Component{
     }
 }
 
+
+// const bridgeTodoRow = connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+//   )(TodoRow)

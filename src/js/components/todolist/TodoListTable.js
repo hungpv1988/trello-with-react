@@ -8,8 +8,8 @@ export default class TodoListTable extends React.Component {
 
     render(){
         var todoList = this.props.todoList;
-        var actions = this.props.actions;
-        const dataRows =  todoList.map( (item, index) => <TodoRow todo={item} actions={actions} /> )
+
+        const dataRows =  todoList.map( (item, index) => <TodoRow todo={item}/> )
         return(
             <div align="center">
                     <table border="1" width="450px">

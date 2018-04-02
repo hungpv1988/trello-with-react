@@ -8,6 +8,7 @@ export function addTodo(text) {
 }
 
 export function deleteTodo(id){
+    console.log(id);
     return {
         type: types.DELETE,
         id
