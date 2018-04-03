@@ -2,9 +2,9 @@ import React from 'react';
 import {connect,  bindActionCreators } from 'react-redux';
 import * as actions from '../../actions/todoActions';
 
-export default class TodoRow extends React.Component{
-    constructor(){
-        super();
+class TodoRow extends React.Component{
+    constructor(props){
+        super(props);
     }
 
     handleClick(){
@@ -18,7 +18,7 @@ export default class TodoRow extends React.Component{
             <tr>
                 <td>{todo.name}</td>
                 <td>{todo.status}</td>
-                <td><button onClick={this.handleClick}>delete</button></td>
+                <td><button onClick={(e) => this.handleClick}>delete</button></td>
             </tr>
         )
 
@@ -26,7 +26,12 @@ export default class TodoRow extends React.Component{
 }
 
 
-// const bridgeTodoRow = connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-//   )(TodoRow)
+function mapStateToProps(state) {
+  return {
+    state
+  };
+}
+
+const mapDispatchToProps = (dispatch) => { return { onDeleteButtonClick: (id) => { dispatch(actions.deleteTodo(id)) } } }
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoRow);

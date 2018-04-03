@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoListTable from './TodoListTable';
 
+
 export default class MyApp extends React.Component{
     constructor(){
         super();
@@ -12,17 +13,8 @@ export default class MyApp extends React.Component{
     render(){
         var todoList = this.state.todoList;
         return(
-           <div>fuck</div>
+           <TodoListTable todoList={todoList}/>
         )
     }
 } 
 
-// function mapStateToProps(state) {
-//   return {
-//       state
-//   };
-// }
-
-// const mapDispatchToProps = (dispatch) => { return { onDeleteButtonClick: (id) => { dispatch(deleteTodo(id)) } } }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(MyApp);

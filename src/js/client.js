@@ -9,17 +9,9 @@ import Title from './components/Header/Title';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
-
-const initialState = {};
-const store = createStore(rootReducer, initialState);
-
-const AppRoot = (
-    <Provider store ={store}> 
-            <MyApp />
-    </Provider>
-)
-
-const app = document.getElementById('app');
+const store = createStore(rootReducer);
 ReactDOM.render(
-    <AppRoot />
-, app);
+  <Provider store ={store}>
+    <MyApp />
+  </Provider>
+, document.getElementById('app'));
