@@ -21,3 +21,9 @@ export function editTodo(todo){
         todo
     }
 }
+
+export function getAll(){
+    return {
+        type: types.GETALL
+    }
+}

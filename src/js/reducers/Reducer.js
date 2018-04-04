@@ -1,8 +1,7 @@
 import * as types from '../constants/ActionTypes';
 
 const initialState = [{
-    is_addnew: false,
-    is_edit: false
+    todoList : [{name: 'Planing', status:'done'}, {name: 'Designing', status:'done'}, {name: 'Implementing', status:'done'}]
 }];
 
 export default function todoAppReducer(state = initialState, action)

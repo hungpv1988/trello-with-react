@@ -5,11 +5,15 @@ import ReactDOM from 'react-dom';
 import ComponentWithRegex from './components/ComponentWithRegex';
 import MyApp from './components/todolist/MyApp';
 import rootReducer from './reducers/rootReducer';
-import Title from './components/Header/Title';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
-const store = createStore(rootReducer);
+const initialState = [{
+    todoList : [{name: 'Planing', status:'done'}, {name: 'Designing', status:'done'}, {name: 'Implementing', status:'done'}]
+}];
+const store = createStore(rootReducer, {
+    todoList : [{name: 'Planing', status:'done'}, {name: 'Designing', status:'done'}, {name: 'Implementing', status:'done'}]
+});
 ReactDOM.render(
   <Provider store ={store}>
     <MyApp />

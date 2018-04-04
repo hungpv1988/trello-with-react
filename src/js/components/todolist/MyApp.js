@@ -1,20 +1,36 @@
 import React from 'react';
 import TodoListTable from './TodoListTable';
+import AddItem from './AddItem';
+import {connect} from 'react-redux';
+import * as actions from '../../actions/todoActions';
+import autoBind from 'react-autobind';
 
-
-export default class MyApp extends React.Component{
+class MyApp extends React.Component{
     constructor(){
         super();
-        this.state = {
-            todoList : [{name: 'Planing', status:'done'}, {name: 'Designing', status:'done'}, {name: 'Implementing', status:'done'}]
-        }
+        autoBind(this);
+    }
+
+    componentDidCatch()
+    {
+        this.props.getAll();
     }
 
     render(){
-        var todoList = this.state.todoList;
+        alert(this.props.todoList);
         return(
-           <TodoListTable todoList={todoList}/>
+            <div>
+                <AddItem/>
+                <TodoListTable todoList={this.props.todoList}/>
+            </div>   
         )
     }
 } 
 
+function mapStateToProps(state) {
+    return {
+        todoList: state.todoList
+    };
+}
+const mapDispatchToProps = (dispatch) => { return { getAll: () => { dispatch(actions.getAll()) } } }
+export default connect(mapStateToProps, mapDispatchToProps) (MyApp);
