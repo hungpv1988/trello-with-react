@@ -15,6 +15,7 @@
     "bootstrap-without-jquery": "^1.0.5",
     "history": "^4.7.2",
     "react": "^16.2.0",
+    "react-autobind": "^1.0.6",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",

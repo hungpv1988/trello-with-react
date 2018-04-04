@@ -18,7 +18,7 @@ class TodoRow extends React.Component{
             <tr>
                 <td>{todo.name}</td>
                 <td>{todo.status}</td>
-                <td><button onClick={(e) => this.handleClick}>delete</button></td>
+                <td><button onClick={(e) => this.handleClick()}>delete</button></td>
             </tr>
         )
 

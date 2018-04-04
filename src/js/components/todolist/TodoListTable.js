@@ -6,6 +6,10 @@ export default class TodoListTable extends React.Component {
         super();
     }
 
+    // componentDidMount(){
+
+    // }
+
     render(){
         var todoList = this.props.todoList;
 
@@ -26,3 +30,4 @@ export default class TodoListTable extends React.Component {
         );
     }
 }
+
