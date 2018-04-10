@@ -8,12 +8,13 @@ import rootReducer from './reducers/rootReducer';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
-const initialState = [{
+
+
+const initialState = {
     todoList : [{name: 'Planing', status:'done'}, {name: 'Designing', status:'done'}, {name: 'Implementing', status:'done'}]
-}];
-const store = createStore(rootReducer, {
-    todoList : [{name: 'Planing', status:'done'}, {name: 'Designing', status:'done'}, {name: 'Implementing', status:'done'}]
-});
+};
+const store = createStore(rootReducer);
+
 ReactDOM.render(
   <Provider store ={store}>
     <MyApp />
