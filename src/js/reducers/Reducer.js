@@ -3,7 +3,7 @@ import {ItemStatus} from '../constants/ItemStatus';
 // const initialState = [{
 //     todoList : [{name: 'Planing', status:'done'}, {name: 'Designing', status:'done'}, {name: 'Implementing', status:'done'}]
 // }];
-const initialState = [{name: 'Planing', status: ItemStatus.Backlog}, {name: 'Designing', status:ItemStatus.Backlog}, {name: 'Implementing', status:ItemStatus.Backlog}]
+const initialState = [{name: 'Planing', status: ItemStatus.Backlog}, {name: 'Designing', status:ItemStatus.InProgress}, {name: 'Implementing', status:ItemStatus.Resolved}]
 
 export default function todoAppReducer(state = initialState, action)
 {
