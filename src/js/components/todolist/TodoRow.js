@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect,  bindActionCreators } from 'react-redux';
 import * as actions from '../../actions/todoActions';
+import * as utility from '../../helper/EnumUtility';
+import {ItemStatus} from '../../constants/ItemStatus';
 
 class TodoRow extends React.Component{
     constructor(props){
@@ -17,8 +19,11 @@ class TodoRow extends React.Component{
         return(
             <tr>
                 <td>{todo.name}</td>
-                <td>{todo.status}</td>
-                <td><button onClick={(e) => this.handleClick(e)}>delete</button></td>
+                <td>{utility.getKeyFromValue(ItemStatus, todo.status)}</td>
+                <td>
+                    <button onClick={(e) => this.handleClick(e)}>Move Previous</button>
+                    <button onClick={(e) => this.handleClick(e)}>Move Next</button>
+                </td>
             </tr>
         )
 
