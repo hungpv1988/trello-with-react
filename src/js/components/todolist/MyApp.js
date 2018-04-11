@@ -11,13 +11,12 @@ class MyApp extends React.Component{
         autoBind(this);
     }
 
-    componentDidCatch()
+    componentDidMount()
     {
         this.props.getAll();
     }
 
     render(){
-        alert(this.props.todoList);
         return(
             <div>
                 <AddItem/>
@@ -33,5 +32,6 @@ function mapStateToProps(state) {
     };
 }
 
+// must have a return here. Talk with Gile tomorrow
 const mapDispatchToProps = (dispatch) => { getAll: () => { dispatch(actions.getAll()) } }
 export default connect(mapStateToProps, mapDispatchToProps) (MyApp);
