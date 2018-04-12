@@ -33,5 +33,5 @@ function mapStateToProps(state) {
 }
 
 // must have a return here. Talk with Gile tomorrow
-const mapDispatchToProps = (dispatch) => { getAll: () => { dispatch(actions.getAll()) } }
+const mapDispatchToProps = (dispatch) => { return { getAll: () => { dispatch(actions.getAll()) } } }
 export default connect(mapStateToProps, mapDispatchToProps) (MyApp);
