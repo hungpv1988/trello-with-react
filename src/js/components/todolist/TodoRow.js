@@ -8,7 +8,7 @@ import ItemStatusList from './ItemStatusList';
 class TodoRow extends React.Component{
     constructor(props){
         super(props);
-        this.state = {editmode: false};
+        this.state = {editmode: false, todo: this.props.todo};
     }
 
     handleNextClick(e){
@@ -28,16 +28,25 @@ class TodoRow extends React.Component{
 
     handleSubmit(e)
     {
-        this.setState({editmode: false});
+        var todo = this.state.todo;
+        this.props.editTodo(todo);
+        this.setState({editmode: false, todo: todo});
     };
 
+    onItemNameChange(e)
+    {
+        var todo = this.state.todo;
+        todo.name = event.target.value;
+        this.setState({todo: todo});
+    }
+
     render(){
-        var todo = this.props.todo;
+        var todo = this.state.todo;
         return(
             <tr>
                 <td>
                     {
-                        this.state.editmode ? <input type="text" value={todo.name} />
+                        this.state.editmode ? <input type="text" value={todo.name} onChange={(e) => this.onItemNameChange(e)}  />
                                             : <label> {todo.name}</label> 
                     }
                 </td>
@@ -70,6 +79,5 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => { return { onDeleteButtonClick: (id) => { dispatch(actions.deleteTodo(id)) } } }
-
+const mapDispatchToProps = (dispatch) => {return {editTodo: (todo) => {dispatch(actions.editTodo(todo))}}}
 export default connect(mapStateToProps, mapDispatchToProps)(TodoRow);
