@@ -11,32 +11,29 @@ class TodoRow extends React.Component{
         this.state = {editmode: false, todo: this.props.todo};
     }
 
-    handleNextClick(e){
-        alert(1);
-        this.props.onDeleteButtonClick(1);
-    };
-
-    handlePreviousClick(e){
-        alert(1);
-        this.props.onDeleteButtonClick(1);
-    };
-
-    handleEnableEdit(e)
+    onEdit(e)
     {
         this.setState({editmode: true});
     };
 
-    handleSubmit(e)
+    onSubmit(e)
     {
         var todo = this.state.todo;
         this.props.editTodo(todo);
         this.setState({editmode: false, todo: todo});
     };
 
-    onItemNameChange(e)
+    onNameChange(e)
     {
         var todo = this.state.todo;
         todo.name = event.target.value;
+        this.setState({todo: todo});
+    };
+
+    onStatusChange(e)
+    {
+        var todo = this.state.todo;
+        todo.status = event.srcElement.value;
         this.setState({todo: todo});
     }
 
@@ -46,13 +43,13 @@ class TodoRow extends React.Component{
             <tr>
                 <td>
                     {
-                        this.state.editmode ? <input type="text" value={todo.name} onChange={(e) => this.onItemNameChange(e)}  />
+                        this.state.editmode ? <input type="text" value={todo.name} onChange={(e) => this.onNameChange(e)}  />
                                             : <label> {todo.name}</label> 
                     }
                 </td>
                 <td>
                         {
-                        this.state.editmode ?  <ItemStatusList value={todo.status}/>
+                        this.state.editmode ?  <ItemStatusList value={todo.status} onChange={(e) => this.onStatusChange(e)}/>
                                             : <label> {utility.getKeyFromValue(ItemStatus, todo.status)}</label> 
                         }
                 </td>
@@ -61,8 +58,8 @@ class TodoRow extends React.Component{
                     <button onClick={(e) => this.handleNextClick(e)} style={todo.state == ItemStatus.Close ? {display: 'none'} : {} }>Move Next</button> */}
 
                     {
-                        this.state.editmode ?   <button onClick={ (e) => this.handleSubmit(e)}>Submit</button> 
-                                            :   <button onClick={ (e) => this.handleEnableEdit(e)}>Edit</button> 
+                        this.state.editmode ?   <button onClick={ (e) => this.onSubmit(e)}>Submit</button> 
+                                            :   <button onClick={ (e) => this.onEdit(e)}>Edit</button> 
                     }
                   
                 </td>
