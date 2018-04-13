@@ -11,12 +11,10 @@ export default function todoAppReducer(state = initialState, action)
     {
         case types.ADDNEW: 
             var nextId = state[state.length-1].id+1;
-            return [...state, {id: state[state.length-1].id+1, name: action.text, status: ItemStatus.Backlog}];break;
+            return [...state, {id: state[state.length-1].id+1, name: action.text, status: ItemStatus.Backlog}];
 
         case types.EDIT:
-            var currentItem = state.filter((item) => item.id == action.todo.id)
-            currentItem.name = action.todo.name;
-            return state;
+            state= state.map((item, index) => (item.id == action.todo.id) ? {...item, name:action.todo.name, status:action.todo.status} : item )
             break;    
             
         case types.GETALL: break;
