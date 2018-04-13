@@ -14,10 +14,12 @@ export default function todoAppReducer(state = initialState, action)
             return [...state, {id: state[state.length-1].id+1, name: action.text, status: ItemStatus.Backlog}];
 
         case types.EDIT:
-            state= state.map((item, index) => (item.id == action.todo.id) ? {...item, name:action.todo.name, status:action.todo.status} : item )
-            break;    
-            
-        case types.GETALL: break;
+            return state.map((item, index) => (item.id == action.todo.id) ? {...item, name:action.todo.name, status:action.todo.status} : item )
+        
+        case types.SEARCH:
+            return state.filter( (item) => ((!action.criteria.name) && (item.name.indexOf(action.criteria.name >=0))) && ((action.criteria.status > 0) && (item.criteria.status >= action.status))  );
+
+            case types.GETALL: break;
         default: return state;
     }
 

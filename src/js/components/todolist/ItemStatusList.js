@@ -9,13 +9,10 @@ export default class ItemStatusList extends React.Component{
         this.state = {value: props.value};
     }
 
-    // onChange(event)
-    // {
-    //     this.setState({value: event.srcElement.value});
-    // };
-
     render(){
-        var options = [],
+        var {defaultOptionText, defaultOptionValue} = this.props;
+
+        var options = (!defaultOptionText) ? [] : [<option value={defaultOptionValue}>{defaultOptionText}</option>],
             value = this.state.value,
             onChange = this.props.onChange;
 

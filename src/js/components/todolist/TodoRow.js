@@ -33,7 +33,7 @@ class TodoRow extends React.Component{
     onStatusChange(e)
     {
         var todo = this.state.todo;
-        todo.status = event.srcElement.value;
+        todo.status = e.nativeEvent.srcElement.value;
         this.setState({todo: todo});
     }
 

@@ -4,6 +4,7 @@ import AddItem from './AddItem';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/todoActions';
 import autoBind from 'react-autobind';
+import FilterBar from './FilterBar';
 
 class MyApp extends React.Component{
     constructor(){
@@ -20,6 +21,7 @@ class MyApp extends React.Component{
         return(
             <div>
                 <AddItem/>
+                <FilterBar/>
                 <TodoListTable todoList={this.props.todoList}/>
             </div>   
         )
