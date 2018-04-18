@@ -22,7 +22,7 @@ class FilterBar extends React.Component{
     onFilter(e)
     {
         var {name, status} = this.state;
-        this.props.filter({name, status});
+        this.props.filter(name, status);
     }
 
     render(){
