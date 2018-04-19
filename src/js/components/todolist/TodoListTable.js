@@ -5,14 +5,14 @@ import {connect} from 'react-redux';
 class TodoListTable extends React.Component {
     constructor(props){
         super(props);
-        var {todoList, criteria} = this.props;
-        this.state = {todoList, criteria};
+     //   var {todoList, criteria} = this.props;
+      //  this.state = {todoList, criteria};
     }
 
     render(){
 
 
-        var {todoList, criteria} = this.state;
+        var {todoList, criteria} = this.props;
 
         todoList    = (!criteria) ? todoList : todoList.filter( 
                                                                 (item) =>      ((!criteria.name) || (item.name.indexOf(criteria.name) >=0)) 
@@ -39,7 +39,7 @@ class TodoListTable extends React.Component {
 // const mapDispatchToProp = (dispatch) => {return {todoList: dispatch()} };
  function mapStateToProps(state) {
      return {
-        criteria: state.criteria
+        criteria: state.filter
      }
  } 
 
