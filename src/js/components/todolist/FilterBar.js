@@ -11,12 +11,13 @@ class FilterBar extends React.Component{
 
     onNameChange(e)
     {
-        this.setState(...this.state, {name: e.target.value});
+        this.setState(...this.state, {name:e.target.value});
     }
 
     onStatusChange(e)
     {
         this.setState(...this.state, {status: e.nativeEvent.srcElement.value});
+        this.props.filter(this.state.name, e.nativeEvent.srcElement.value)
     }
 
     onFilter(e)
@@ -30,9 +31,9 @@ class FilterBar extends React.Component{
             <div align="center">
                 <fieldset>
                     <legend>Data</legend>
-                    <input type="text" width="270px" onChange={(e) => this.onNameChange(e)}/>
+                    <input type="text" width="270px" onChange={(e) => this.onNameChange(e)} onBlur={(e) => this.onFilter(e)} />
                     <ItemStatusList onChange={(e) => this.onStatusChange(e)} defaultOptionText="select item status" defaultOptionValue="0"/>
-                    <button onClick={(e) => this.onFilter(e)}>Fiilter</button>
+                    {/* <button onClick={(e) => this.onFilter(e)}>Fiilter</button> */}
                 </fieldset>
             </div>
         )
