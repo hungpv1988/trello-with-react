@@ -27,3 +27,10 @@ export function getAll(){
         type: types.GETALL
     }
 }
+
+export function filter(criteria){
+    return{
+        type:types.SEARCH,
+        criteria
+    }
+}

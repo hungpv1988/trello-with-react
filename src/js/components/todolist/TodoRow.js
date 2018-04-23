@@ -9,8 +9,28 @@ class TodoRow extends React.Component{
     constructor(props){
         super(props);
         this.state = {editmode: false, todo: this.props.todo};
-    }
+    };
 
+    // static getDerivedStateFromProps(nextProps, prevState){
+    //     alert("1");
+    //     alert(nextProps);
+    //     alert(prevState);
+    // };
+
+    // componentWillMount() {
+    //     // alert("2");
+    //     // alert(this.props);
+    //     // alert(this.state);
+    //   };
+
+    componentWillReceiveProps(nextProps) {
+      if  (!nextProps.todo){
+        return;
+      }
+
+      this.setState({todo:nextProps.todo});
+    };
+    
     onEdit(e)
     {
         this.setState({editmode: true});
@@ -33,7 +53,7 @@ class TodoRow extends React.Component{
     onStatusChange(e)
     {
         var todo = this.state.todo;
-        todo.status = event.srcElement.value;
+        todo.status = e.nativeEvent.srcElement.value;
         this.setState({todo: todo});
     }
 
@@ -69,12 +89,7 @@ class TodoRow extends React.Component{
     }
 }
 
-
-function mapStateToProps(state) {
-  return {
-    state
-  };
-}
-
+// should not use mapDispatchToProps or mapstatetopro if a component is rendered too many. In this case, many rows may be render
+// so let's pass data as props
 const mapDispatchToProps = (dispatch) => {return {editTodo: (todo) => {dispatch(actions.editTodo(todo))}}}
-export default connect(mapStateToProps, mapDispatchToProps)(TodoRow);
+export default connect(null, mapDispatchToProps)(TodoRow);
