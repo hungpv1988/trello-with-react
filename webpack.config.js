@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   context: __dirname,
   devtool: debug ? "inline-sourcemap" : null,
-  entry: "./src/js/client.js",
+  entry: "./src/js/todolistclient.js",
   module:{
     rules: [
       {

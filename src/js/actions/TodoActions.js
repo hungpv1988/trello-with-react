@@ -34,3 +34,10 @@ export function filter(criteria){
         criteria
     }
 }
+
+export function nextStatus(todo){
+    return{
+        type:types.NEXTSTATUS,
+        todo
+    }
+}

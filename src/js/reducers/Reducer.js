@@ -16,6 +16,9 @@ export default function todoAppReducer(state = initialState, action)
         case types.EDIT:
             return state.map((item, index) => (item.id == action.todo.id) ? {...item, name:action.todo.name, status:action.todo.status} : item )
 
+        case types.NEXTSTATUS:
+            return state.map((item, index) => (item.id == action.todo.id) ? {...item, status:action.todo.status} : item );
+
         default: return state;
     }
 

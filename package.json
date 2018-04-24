@@ -1,7 +1,7 @@
 {
-  "name": "todo-list",
-  "version": "0.1.0",
-  "private": true,
+  "name": "a",
+  "version": "a",
+  "private": null,
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
@@ -24,12 +24,17 @@
     "redux": "^3.7.2",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-dev-server": "^3.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "a",
+  "main": "a",
+  "repository": "a",
+  "author": "a",
+  "license": "a"
 }
