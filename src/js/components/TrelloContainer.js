@@ -5,7 +5,7 @@ import TodoList from './TodoList';
 import {connect} from 'react-redux';
 import autoBind from 'react-autobind';
 import  {ItemStatus}  from '../constants/ItemStatus';
-import * as actions from '../constants/ActionTypes';
+import * as actions from '../actions/TodoActions';
 
 class TrelloContainer extends React.Component{
     constructor(props){
@@ -46,5 +46,5 @@ function mapStateToProps(state){
     }
 }
 
-const mapDispatchToProps =  (dispatch) => { return { moveNext: () => {dispatch(actions.NEXTSTATUS) } }};
+const mapDispatchToProps =  (dispatch) => { return { moveNext: (todo) => {dispatch(actions.nextStatus(todo)) } }};
 export default connect(mapStateToProps, mapDispatchToProps)(TrelloContainer)
