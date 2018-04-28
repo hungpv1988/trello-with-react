@@ -1,9 +1,12 @@
 import React from 'react';
 import Item from './Item';
+import Header from './Header';
+import NewItem from './NewItem';
+
 export default class TodoList extends React.Component{
     constructor(props){
         super(props);
-        this.state = {todoList : this.props.todoList};
+        this.state = {todoList : this.props.todoList, cssClass:  this.props.cssClass, title: this.props.title};
     };
 
 
@@ -17,12 +20,22 @@ export default class TodoList extends React.Component{
     };
 
     render(){
-        var todoList = this.state.todoList;
+        var styles = {
+            border: '1px solid black;'
+        };
+
+        var {todoList, cssClass, title} = this.state;
         const itemList = todoList.map((item, index) => <Item status={item.status} name={item.name} moveNext={this.props.moveNext} id={item.id} /> )
         return(
-            <ul id="sortable" class="list-unstyled">
-                {itemList}
-            </ul>
+            <div class={cssClass} style={styles}>
+                <div class="todolist">
+                    <Header title={title}/>
+                    {/* <NewItem /> */}
+                    <ul id="sortable" class="list-unstyled">
+                        {itemList}
+                    </ul>
+                </div>
+            </div>
         )
     }
 }

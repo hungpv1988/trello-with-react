@@ -15,25 +15,18 @@ class TrelloContainer extends React.Component{
 
     render(){
         var {todoList} = this.props;
-        var InProgressList = todoList.filter( (item) => item.status == ItemStatus.Backlog ),
-            DoneList = todoList.filter( (item) => item.status == ItemStatus.InProgress );
+
+        var allColumns = [];    
+        for(var key in ItemStatus){
+            allColumns = [...allColumns, <TodoList todoList={todoList.filter( (item) => item.status == ItemStatus[key])} cssClass="col-md-3" title={key} moveNext={this.props.moveNext} />]
+        }
+
         return(
             <div class="container">
                 <div class="row">
-                   <div class="col-md-6">
-                        <div class="todolist not-done">
-                            <Header title="Todo"/>
-                            <NewItem />
-                            <TodoList todoList={InProgressList} moveNext={this.props.moveNext}/>
-                        </div>
-                   </div>
-
-                    <div class="col-md-6">
-                        <div class="todolist">
-                            <Header title="Done" />
-                            <TodoList todoList={DoneList} moveNext={this.props.moveNext}/>
-                        </div>
-                   </div>
+                    {
+                        allColumns
+                    }
                 </div>
             </div>
         );
