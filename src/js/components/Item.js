@@ -1,4 +1,5 @@
 import React from 'react';
+import { height } from 'window-size';
 
 export default class Item extends React.Component{
     constructor(props){
@@ -25,14 +26,11 @@ export default class Item extends React.Component{
     };
 
     render(){
-        var name = this.state.name;
+        var name = this.state.name,
+            style = (!name) ?   'style ={height: 60px} contenteditable="true"' : "";
         return(
-            <li class="ui-state-default" onClick={(e) => this.onClick(e)}>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="true" /> {name}
-                    </label>
-                </div>
+            <li class="ui-state-default" {...style} onClick={(e) => this.onClick(e)}>
+               {name}
             </li>
         )
     }

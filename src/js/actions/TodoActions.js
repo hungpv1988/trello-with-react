@@ -1,9 +1,10 @@
 import * as types from '../constants/ActionTypes';
 
-export function addTodo(text) {
+export function addTodo(text, status) {
     return{
         type: types.ADDNEW,
-        text
+        text,
+        status
     };
 }
 

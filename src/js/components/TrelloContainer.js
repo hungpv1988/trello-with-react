@@ -18,12 +18,14 @@ class TrelloContainer extends React.Component{
 
         var allColumns = [];    
         for(var key in ItemStatus){
-            allColumns = [...allColumns, <TodoList todoList={todoList.filter( (item) => item.status == ItemStatus[key])} cssClass="col-md-3" title={key} moveNext={this.props.moveNext} />]
+            allColumns = [...allColumns, <TodoList addNew={this.props.addNew} todoList={todoList.filter( (item) => item.status == ItemStatus[key])} cssClass="col-md-3" title={key} moveNext={this.props.moveNext} />]
         }
 
         return(
-            <div class="container">
-                <div class="row">
+            <div class="ui">
+            	<nav class="navbar app">App bar</nav>
+	            <nav class="navbar board">Board bar</nav>
+                <div class="lists">
                     {
                         allColumns
                     }
@@ -39,5 +41,9 @@ function mapStateToProps(state){
     }
 }
 
-const mapDispatchToProps =  (dispatch) => { return { moveNext: (todo) => {dispatch(actions.nextStatus(todo)) } }};
+const mapDispatchToProps =  (dispatch) => { return { 
+    moveNext: (todo) => {dispatch(actions.nextStatus(todo));
+    addNew: (text, status) => {dispatch(actions.addTodo(text, status))} 
+    } 
+}};
 export default connect(mapStateToProps, mapDispatchToProps)(TrelloContainer)

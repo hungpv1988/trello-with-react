@@ -19,22 +19,25 @@ export default class TodoList extends React.Component{
         this.setState({todoList:nextProps.todoList});
     };
 
-    render(){
-        var styles = {
-            border: '1px solid black;'
-        };
+    addNew(e)
+    {
+       // this.props.addNew();
+        var {todoList} = this.state;
+        todoList = [...todoList, {id: 0, name: '', status: 0}];
+        this.setState({todoList: todoList});
+    };
 
+    render(){
         var {todoList, cssClass, title} = this.state;
         const itemList = todoList.map((item, index) => <Item status={item.status} name={item.name} moveNext={this.props.moveNext} id={item.id} /> )
         return(
-            <div class={cssClass} style={styles}>
-                <div class="todolist">
-                    <Header title={title}/>
-                    {/* <NewItem /> */}
-                    <ul id="sortable" class="list-unstyled">
-                        {itemList}
-                    </ul>
-                </div>
+            <div class="list">
+                <header>{title}</header>
+                <ul id="sortable" class="list-unstyled">
+                    {itemList}
+                    {/* <li contenteditable="true">Edit ME!</li> */}
+                </ul>  
+                <footer><a href="#" onClick={(e) => this.addNew(e)}>Add a card...</a></footer>
             </div>
         )
     }
