@@ -2,11 +2,13 @@ import React from 'react';
 import Item from './Item';
 import Header from './Header';
 import NewItem from './NewItem';
+import autobind from 'react-autobind';
 
 export default class TodoList extends React.Component{
     constructor(props){
         super(props);
         this.state = {todoList : this.props.todoList, cssClass:  this.props.cssClass, title: this.props.title};
+        autobind(this);
     };
 
 
@@ -14,22 +16,32 @@ export default class TodoList extends React.Component{
         if  (!nextProps.todoList){
           return;
         }
-        
-  
+         
         this.setState({todoList:nextProps.todoList});
     };
 
     addNew(e)
     {
-       // this.props.addNew();
         var {todoList} = this.state;
-        todoList = [...todoList, {id: 0, name: '', status: 0}];
+        todoList = [...todoList, {id: 0, name: '', status: this.props.status}];
         this.setState({todoList: todoList});
+    };
+
+    onItemUpdate(item)
+    {
+        if (item.id > 0)
+        {
+            this.props.editTodo({id: item.id, name: item.name, status: item.status});    
+        }
+        else
+        {
+            this.props.addNew(item.name, item.status);
+        }    
     };
 
     render(){
         var {todoList, cssClass, title} = this.state;
-        const itemList = todoList.map((item, index) => <Item status={item.status} name={item.name} moveNext={this.props.moveNext} id={item.id} /> )
+        const itemList = todoList.map((item, index) => <Item onItemUpdate={this.onItemUpdate} status={item.status} name={item.name} moveNext={this.props.moveNext} id={item.id} /> )
         return(
             <div class="list">
                 <header>{title}</header>

@@ -10,12 +10,29 @@ export default class Item extends React.Component{
 
     onClick(e)
     {
+        if (!this.state.name){
+            return;
+        };
+
         var newStatus = this.state.status + 1;
         this.setState({status: newStatus});
         var todo = {id: this.state.id, name: this.state.name, status: newStatus};
         this.props.moveNext(todo);
         
     } 
+
+    onKeyPress(e)
+    {
+        if (e.key === 'Enter') 
+        {
+            var name = event.target.innerText;
+            if (!name){
+                return false;
+            }
+            
+            this.props.onItemUpdate({id: this.state.id, name: name, status: this.state.status});
+        }
+    };
 
     componentWillReceiveProps(nextProps) {
         if  (!nextProps.id || !nextProps.name || !nextProps.status){
@@ -26,10 +43,10 @@ export default class Item extends React.Component{
     };
 
     render(){
-        var name = this.state.name,
-            style = (!name) ?   'style ={height: 60px} contenteditable="true"' : "";
+        var name = this.state.name;
+
         return(
-            <li class="ui-state-default" {...style} onClick={(e) => this.onClick(e)}>
+            <li class="ui-state-default" onKeyPress={(e) => this.onKeyPress(e)} contenteditable={(!name) ? "true" : "false"}  style={(!name) ? {height:60, marginBottom:10} :{} } onClick={(e) => this.onClick(e)}>
                {name}
             </li>
         )
