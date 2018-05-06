@@ -34,7 +34,12 @@ export default class TodoList extends React.Component{
             this.props.editTodo({id: item.id, name: item.name, status: item.status});    
         }
         else
-        {
+        {   
+            if (!item.name){
+                var todoList = this.state.todoList.filter((item, index) => (!item.name) == false);
+                this.setState({todoList: todoList});
+                return;
+            }
             this.props.addNew(item.name, item.status);
         }    
     };

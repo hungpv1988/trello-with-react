@@ -39,6 +39,5 @@ class AddItem extends React.Component {
     }
 }
 
-//const mapDispatchToProps = (dispatch) => { addTodo: (text) => { dispatch(actions.addTodo(text)) }};
 const mapDispatchToProps = (dispatch) => { return { addTodo: (text) => { dispatch(actions.addTodo(text)) } } }
 export default connect(null, mapDispatchToProps)(AddItem);

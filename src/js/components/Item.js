@@ -6,6 +6,18 @@ export default class Item extends React.Component{
         super(props);
         var status, name = this.props;
         this.state = {id: this.props.id, name: this.props.name, status:this.props.status};
+        this.li = null;
+        this.setLiRef = element => {
+            this.li = element;
+        };
+
+        this.focusLi = () => {
+            if (this.li) this.li.focus();
+        };
+    };
+
+    dispatchUpdateAction(event){
+        this.props.onItemUpdate({id: this.state.id, name: event.target.innerText, status: this.state.status});
     }
 
     onClick(e)
@@ -17,21 +29,23 @@ export default class Item extends React.Component{
         var newStatus = this.state.status + 1;
         this.setState({status: newStatus});
         var todo = {id: this.state.id, name: this.state.name, status: newStatus};
-        this.props.moveNext(todo);
-        
+        this.props.moveNext(todo);      
     } 
 
     onKeyPress(e)
     {
         if (e.key === 'Enter') 
         {
-            var name = event.target.innerText;
-            if (!name){
-                return false;
-            }
-            
-            this.props.onItemUpdate({id: this.state.id, name: name, status: this.state.status});
+            this.dispatchUpdateAction(event);
         }
+    };
+
+    onBlur(e){
+        this.dispatchUpdateAction(event);
+    };
+
+    componentDidMount(){
+        this.focusLi();
     };
 
     componentWillReceiveProps(nextProps) {
@@ -42,11 +56,13 @@ export default class Item extends React.Component{
          this.setState({id: nextProps.id, name: nextProps.name, status:nextProps.status});
     };
 
+
+
     render(){
         var name = this.state.name;
 
         return(
-            <li class="ui-state-default" onKeyPress={(e) => this.onKeyPress(e)} contenteditable={(!name) ? "true" : "false"}  style={(!name) ? {height:60, marginBottom:10} :{} } onClick={(e) => this.onClick(e)}>
+            <li ref={this.setLiRef} onBlur={(e) => this.onBlur(e)} onKeyPress={(e) => this.onKeyPress(e)} contenteditable={(!name) ? "true" : "false"}  style={(!name) ? {height:60, marginBottom:10, marginTop:10} :{} } onClick={(e) => this.onClick(e)}>
                {name}
             </li>
         )
